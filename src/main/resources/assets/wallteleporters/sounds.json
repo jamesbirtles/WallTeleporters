@@ -1,0 +1,14 @@
+{
+  "woosh": {
+    "category": "neutral",
+    "sounds": [
+      "woosh"
+    ]
+  },
+  "teleport": {
+    "category": "neutral",
+    "sounds": [
+      "teleport"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+item.gpsChip.name=§2Unlinked GPS Chip
+item.gpsChipLinked.name=§aLinked GPS Chip
+item.enderEssence.name=§3Ender Essence
+item.teleporterCore.name=§3Teleporter Core
+
+itemGroup.wallTeleporters=Wall Teleporters
+
+tile.wallTeleporterBase.name=Teleporter Base
+tile.wallTeleporterWall.name=Teleporter Wall
+
+wallteleporters.wallTeleporterBase.name=Wall Teleporter
+
+wallteleporters.info.yaw=Yaw
+wallteleporters.info.world=World
+wallteleporters.info.yawSpaced=  Yaw
+wallteleporters.info.coordXSpaced=     X
+wallteleporters.info.coordYSpaced=     Y
+wallteleporters.info.coordZSpaced=     Z
+wallteleporters.info.rightClickUnlink=Right click to unlink
+wallteleporters.info.rightClickLink=Right click to link
+
+wallteleporters.gui.sneakForHelp=Sneak for Help
+wallteleporters.gui.sneakHelp=Mouseover for Help
+wallteleporters.gui.wt.enderPearl=Ender Pearl
+wallteleporters.gui.wt.trips=Trips
+wallteleporters.gui.clearDestination=Clear Destination
+wallteleporters.gui.copyDestination=Copy Destination\nfrom GPS Chip
+wallteleporters.gui.gpsChip=Insert a\n§aLinked GPS Chip
+wallteleporters.gui.insert=Insert
+wallteleporters.gui.for=for
+wallteleporters.gui.insertFuel=Insert a Fuel
+
+wallteleporters.text.craftingComponent=§f- §6Crafting Component
+wallteleporters.text.enderEssence=Smash an Ender Pearl\nagainst Bedrock\n§f- §6Crafting Component\n§f- §5Teleporter Fuel

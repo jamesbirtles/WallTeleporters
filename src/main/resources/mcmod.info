@@ -1,0 +1,17 @@
+[
+{
+  "modid" : "wallteleporters",
+  "name" : "Wall Teleporters",
+  "version" : "1.7.10-dev",
+  "authors": [
+    "UnwrittenFun"
+  ],
+  "description": "Blocks that can be masked as any other block and when walked into, teleports you to a different location",
+  "url" : "https://github.com/unwrittenfun/WallTeleporters",
+  "updateUrl" : "",
+  "logoFile" : "",
+  "parent" : "",
+  "screenshots": [
+  ]
+}
+]
