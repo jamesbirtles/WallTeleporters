@@ -137,18 +137,21 @@ public class BlockWallTeleporterWall extends BlockContainer {
 
   @Override
   public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-    TileWallTeleporter teleporter = (TileWallTeleporter) world.getTileEntity(x, y, z);
-    if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemBlock) {
-      if (!teleporter.getWTNetwork().maskLocked && !(teleporter.mask.isItemEqual(CompareStacks.wallTeleporter) && player.getHeldItem().isItemEqual(CompareStacks.wallTeleporterBase)) && !teleporter.mask.isItemEqual(player.getHeldItem())) {
-        teleporter.setMask(player.getHeldItem().copy());
-        return true;
+    TileEntity tileEntity = world.getTileEntity(x, y, z);
+    if (tileEntity instanceof TileWallTeleporter) {
+      TileWallTeleporter teleporter = (TileWallTeleporter) tileEntity;
+      if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemBlock) {
+        if (teleporter.hasWTNetwork() && !teleporter.getWTNetwork().maskLocked && !(teleporter.mask.isItemEqual(CompareStacks.wallTeleporter) && player.getHeldItem().isItemEqual(CompareStacks.wallTeleporterBase)) && !teleporter.mask.isItemEqual(player.getHeldItem())) {
+          teleporter.setMask(player.getHeldItem().copy());
+          return true;
+        }
       }
-    }
 
-    if (!player.isSneaking() && (player.getHeldItem() == null || (!player.getHeldItem().isItemEqual(CompareStacks.wallTeleporter)) && teleporter.network != null && teleporter.network.base != null)) {
-      TileWallTeleporterBase base = teleporter.network.base;
+      if (!player.isSneaking() && (player.getHeldItem() == null || (!player.getHeldItem().isItemEqual(CompareStacks.wallTeleporter)) && teleporter.network != null && teleporter.network.base != null)) {
+        TileWallTeleporterBase base = teleporter.network.base;
         FMLNetworkHandler.openGui(player, WallTeleporters.instance, 0, world, base.xCoord, base.yCoord, base.zCoord);
         return true;
+      }
     }
 
     return false;

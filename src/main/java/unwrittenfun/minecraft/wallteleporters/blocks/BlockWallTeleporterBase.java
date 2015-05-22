@@ -154,17 +154,20 @@ public class BlockWallTeleporterBase extends BlockContainer {
 
   @Override
   public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-    if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemBlock) {
-      TileWallTeleporter teleporter = (TileWallTeleporter) world.getTileEntity(x, y, z);
-      if (!teleporter.getWTNetwork().maskLocked && !(teleporter.mask.isItemEqual(CompareStacks.wallTeleporterBase) && player.getHeldItem().isItemEqual(CompareStacks.wallTeleporter)) && !teleporter.mask.isItemEqual(player.getHeldItem())) {
-        teleporter.setMask(player.getHeldItem().copy());
+    TileEntity tileEntity = world.getTileEntity(x, y, z);
+    if (tileEntity instanceof TileWallTeleporter) {
+      TileWallTeleporter teleporter = (TileWallTeleporter) tileEntity;
+      if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemBlock) {
+        if (!teleporter.getWTNetwork().maskLocked && !(teleporter.mask.isItemEqual(CompareStacks.wallTeleporterBase) && player.getHeldItem().isItemEqual(CompareStacks.wallTeleporter)) && !teleporter.mask.isItemEqual(player.getHeldItem())) {
+          teleporter.setMask(player.getHeldItem().copy());
+          return true;
+        }
+      }
+
+      if (!player.isSneaking() && (player.getHeldItem() == null || !player.getHeldItem().isItemEqual(CompareStacks.wallTeleporter))) {
+        FMLNetworkHandler.openGui(player, WallTeleporters.instance, 0, world, x, y, z);
         return true;
       }
-    }
-
-    if (!player.isSneaking() && (player.getHeldItem() == null || !player.getHeldItem().isItemEqual(CompareStacks.wallTeleporter))) {
-      FMLNetworkHandler.openGui(player, WallTeleporters.instance, 0, world, x, y, z);
-      return true;
     }
 
     return false;
