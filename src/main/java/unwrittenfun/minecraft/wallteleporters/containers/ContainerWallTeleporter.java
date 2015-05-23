@@ -6,6 +6,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import unwrittenfun.minecraft.wallteleporters.Config;
 import unwrittenfun.minecraft.wallteleporters.containers.slots.SlotValid;
 import unwrittenfun.minecraft.wallteleporters.helpers.CompareStacks;
 import unwrittenfun.minecraft.wallteleporters.recipes.TeleporterFuelRegistry;
@@ -28,7 +29,7 @@ public class ContainerWallTeleporter extends Container {
     }
 
     addSlotToContainer(new SlotValid(teleporterBase, 0, 152, 8));
-    addSlotToContainer(new SlotValid(teleporterBase, 1, 8, 68));
+    if (!Config.disableFuel) addSlotToContainer(new SlotValid(teleporterBase, 1, 8, 68));
   }
 
   @Override
@@ -70,7 +71,7 @@ public class ContainerWallTeleporter extends Container {
       } else {
         if (teleporter.isItemValidForSlot(0, stack)) {
           if (!mergeItemStack(stack, 36, 37, false)) return null;
-        } else if (teleporter.isItemValidForSlot(1, stack)) {
+        } else if (!Config.disableFuel && teleporter.isItemValidForSlot(1, stack)) {
           if (!mergeItemStack(stack, 37, 38, false)) return null;
         } else {
           return null;
