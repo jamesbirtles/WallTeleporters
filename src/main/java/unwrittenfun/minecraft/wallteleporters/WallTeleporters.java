@@ -1,5 +1,6 @@
 package unwrittenfun.minecraft.wallteleporters;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -51,7 +52,7 @@ public class WallTeleporters {
     NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
     MinecraftForge.EVENT_BUS.register(new PlayerInteractHandler());
-    MinecraftForge.EVENT_BUS.register(new Config());
+    FMLCommonHandler.instance().bus().register(new Config());
   }
 
   @EventHandler
