@@ -8,6 +8,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
 import unwrittenfun.minecraft.wallteleporters.blocks.BlockRegister;
 import unwrittenfun.minecraft.wallteleporters.handlers.GuiHandler;
@@ -35,6 +36,8 @@ public class WallTeleporters {
 
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
+    Config.initConfig(new Configuration(event.getSuggestedConfigurationFile()));
+
     log = event.getModLog();
 
     BlockRegister.registerBlocks();

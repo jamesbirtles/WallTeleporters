@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import unwrittenfun.minecraft.commonfun.network.messages.MessageTileInteger;
+import unwrittenfun.minecraft.wallteleporters.Config;
 import unwrittenfun.minecraft.wallteleporters.WallTeleporters;
 import unwrittenfun.minecraft.wallteleporters.helpers.CompareStacks;
 import unwrittenfun.minecraft.wallteleporters.helpers.TeleportationHelper;
@@ -68,7 +69,7 @@ public class WallTeleporterNetwork {
   }
 
   public void entityCollided(Entity entity) {
-    if (hasDestination() && fuel > 0 && cooldown == 0) {
+    if (hasDestination() && (Config.disableFuel || fuel > 0) && cooldown == 0) {
       entity.worldObj.playSoundAtEntity(entity, "wallteleporters:woosh", 1, 1.5f);
       if (entity instanceof EntityPlayerMP) {
         TeleportationHelper.teleportPlayerTo((EntityPlayerMP) entity, destinationWorldId, destinationData[0], destinationData[1], destinationData[2], useRotation ? destinationData[3] : entity.rotationYaw, entity.rotationPitch);
@@ -76,7 +77,7 @@ public class WallTeleporterNetwork {
         TeleportationHelper.teleportEntityTo(entity, destinationWorldId, destinationData[0], destinationData[1], destinationData[2], useRotation ? destinationData[3] : entity.rotationYaw, entity.rotationPitch);
       }
 
-      setFuel(fuel - 1);
+      if (!Config.disableFuel) setFuel(fuel - 1);
       base.onInventoryChanged();
       cooldown = 10;
       entity.worldObj.playSoundAtEntity(entity, "wallteleporters:woosh", 1, 1.5f);

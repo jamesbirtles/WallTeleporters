@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import unwrittenfun.minecraft.commonfun.helpers.InventoryHelpers;
+import unwrittenfun.minecraft.wallteleporters.Config;
 import unwrittenfun.minecraft.wallteleporters.ModInfo;
 import unwrittenfun.minecraft.wallteleporters.WallTeleporters;
 import unwrittenfun.minecraft.wallteleporters.helpers.CompareStacks;
@@ -128,7 +129,7 @@ public class BlockWallTeleporterBase extends BlockContainer {
   @Override
   public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
     TileWallTeleporterBase teleporterBase = (TileWallTeleporterBase) world.getTileEntity(x, y, z);
-    if (teleporterBase != null && teleporterBase.getWTNetwork().hasDestination() && teleporterBase.getWTNetwork().fuel > 0)
+    if (teleporterBase != null && teleporterBase.getWTNetwork().hasDestination() && (Config.disableFuel || teleporterBase.getWTNetwork().fuel > 0))
       return AxisAlignedBB.getBoundingBox(0, 0, 0, 0, 0, 0);
     return super.getCollisionBoundingBoxFromPool(world, x, y, z);
   }
