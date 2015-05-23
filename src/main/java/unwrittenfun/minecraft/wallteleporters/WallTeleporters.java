@@ -18,7 +18,7 @@ import unwrittenfun.minecraft.wallteleporters.items.ItemRegister;
 import unwrittenfun.minecraft.wallteleporters.network.NetworkRegister;
 import unwrittenfun.minecraft.wallteleporters.recipes.TeleporterFuelRegistry;
 
-@Mod(modid = ModInfo.MOD_ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:Forge;required-after:commonfun")
+@Mod(modid = ModInfo.MOD_ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:Forge;required-after:commonfun", guiFactory = ModInfo.GUI_FACTORY_CLASS)
 public class WallTeleporters {
   @Mod.Instance
   public static WallTeleporters instance;
@@ -36,7 +36,7 @@ public class WallTeleporters {
 
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
-    Config.initConfig(new Configuration(event.getSuggestedConfigurationFile()));
+    Config.init(event.getSuggestedConfigurationFile());
 
     log = event.getModLog();
 
@@ -51,6 +51,7 @@ public class WallTeleporters {
     NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
     MinecraftForge.EVENT_BUS.register(new PlayerInteractHandler());
+    MinecraftForge.EVENT_BUS.register(new Config());
   }
 
   @EventHandler
