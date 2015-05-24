@@ -2,7 +2,8 @@
 {
   "modid" : "wallteleporters",
   "name" : "Wall Teleporters",
-  "version" : "1.7.10-dev",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "authors": [
     "UnwrittenFun"
   ],
