@@ -62,7 +62,10 @@ public class BlockWallTeleporterWall extends BlockContainer {
 
   @Override
   public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-    TileWallTeleporter teleporter = (TileWallTeleporter) world.getTileEntity(x, y, z);
+    TileEntity tileEntity = world.getTileEntity(x, y, z);
+    if (!(tileEntity instanceof TileWallTeleporter)) return blockIcon;
+
+    TileWallTeleporter teleporter = (TileWallTeleporter) tileEntity;
     ItemStack mask = teleporter.mask;
     if (mask.isItemEqual(CompareStacks.wallTeleporter)) {
       int connectedSides = 0; // Left 1, Right 2, Up 4, Down 8
@@ -106,8 +109,10 @@ public class BlockWallTeleporterWall extends BlockContainer {
 
   @Override
   public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-    TileWallTeleporterWall teleporterWall = (TileWallTeleporterWall) world.getTileEntity(x, y, z);
-    if (teleporterWall != null && teleporterWall.hasWTNetwork() && teleporterWall.getWTNetwork().hasDestination() && (Config.disableFuel || teleporterWall.getWTNetwork().fuel > 0))
+    TileEntity tileEntity = world.getTileEntity(x, y, z);
+    if (!(tileEntity instanceof TileWallTeleporter)) return super.getCollisionBoundingBoxFromPool(world, x, y, z);
+    TileWallTeleporterWall teleporterWall = (TileWallTeleporterWall) tileEntity;
+    if (teleporterWall.hasWTNetwork() && teleporterWall.getWTNetwork().hasDestination() && (Config.disableFuel || teleporterWall.getWTNetwork().fuel > 0))
       return AxisAlignedBB.getBoundingBox(0, 0, 0, 0, 0, 0);
     return super.getCollisionBoundingBoxFromPool(world, x, y, z);
   }
@@ -161,7 +166,9 @@ public class BlockWallTeleporterWall extends BlockContainer {
   @Override
   public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
     if (!world.isRemote) {
-      TileWallTeleporterWall teleporterWall = (TileWallTeleporterWall) world.getTileEntity(x, y, z);
+      TileEntity tileEntity = world.getTileEntity(x, y, z);
+      if (!(tileEntity instanceof TileWallTeleporter)) return;
+      TileWallTeleporterWall teleporterWall = (TileWallTeleporterWall) tileEntity;
       if (teleporterWall.hasWTNetwork()) teleporterWall.getWTNetwork().entityCollided(entity);
     }
     super.onEntityCollidedWithBlock(world, x, y, z, entity);
