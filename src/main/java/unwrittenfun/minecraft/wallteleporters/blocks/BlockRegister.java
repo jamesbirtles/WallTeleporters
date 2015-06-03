@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import unwrittenfun.minecraft.wallteleporters.items.ItemRegister;
 import unwrittenfun.minecraft.wallteleporters.tiles.TileWallTeleporterBase;
 import unwrittenfun.minecraft.wallteleporters.tiles.TileWallTeleporterWall;
@@ -27,7 +28,7 @@ public class BlockRegister {
   }
 
   public static void addRecipes() {
-    GameRegistry.addRecipe(new ItemStack(wallTeleporterBase), "iei", "ece", "iei", 'i', Items.iron_ingot, 'e', ItemRegister.enderEssence, 'c', ItemRegister.teleporterCore);
-    GameRegistry.addRecipe(new ItemStack(wallTeleporterWall, 4), "ses", "eie", "ses", 'i', Items.iron_ingot, 'e', ItemRegister.enderEssence, 's', Blocks.stone);
+    GameRegistry.addRecipe(new ShapedOreRecipe(wallTeleporterBase, "iei", "ece", "iei", 'i', "ingotIron", 'e', "dustEnderPearl", 'c', ItemRegister.teleporterCore));
+    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(wallTeleporterWall, 4), "ses", "eie", "ses", 'i', "ingotIron", 'e', "dustEnderPearl", 's', "stone"));
   }
 }

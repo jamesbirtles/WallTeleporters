@@ -4,6 +4,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ItemRegister {
   public static final String GPS_CHIP_KEY = "gpsChip";
@@ -20,9 +22,12 @@ public class ItemRegister {
     GameRegistry.registerItem(gpsChip, GPS_CHIP_KEY);
     GameRegistry.registerItem(enderEssence, ENDER_ESSENCE_KEY);
     GameRegistry.registerItem(teleporterCore, TELEPORTER_CORE);
+
+    OreDictionary.registerOre("dustEnderPearl", enderEssence);
   }
 
   public static void addRecipes() {
-    GameRegistry.addRecipe(new ItemStack(teleporterCore), " e ", "ede", " e ", 'e', enderEssence, 'd', Items.diamond);
+    GameRegistry.addRecipe(new ShapedOreRecipe(teleporterCore, " e ", "ede", " e ", 'e', "dustEnderPearl", 'd', "gemDiamond"));
+    GameRegistry.addRecipe(new ShapedOreRecipe(gpsChip, "gig", "rer", "geg", 'g', "dyeGreen", 'i', "ingotIron", 'r', "dustRedstone", 'e', "dustEnderPearl"));
   }
 }
