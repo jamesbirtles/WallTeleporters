@@ -148,6 +148,7 @@ public class WallTeleporterNetwork {
 
     compound.setInteger("fuel", fuel);
     compound.setBoolean("maskLocked", maskLocked);
+    compound.setBoolean("useRotation", useRotation);
   }
 
   public void readFromNBT(NBTTagCompound compound) {
