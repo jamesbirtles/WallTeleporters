@@ -28,7 +28,7 @@ public class GuiHandler implements IGuiHandler {
     switch (id) {
       case 0: // Wall Teleporter
         if (tileEntity instanceof TileWallTeleporterBase) {
-          return new GuiWallTeleporter(player.inventory, (TileWallTeleporterBase) tileEntity);
+          return new GuiWallTeleporter(new ContainerWallTeleporter(player.inventory, (TileWallTeleporterBase) tileEntity));
         }
         break;
     }

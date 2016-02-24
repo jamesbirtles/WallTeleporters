@@ -3,22 +3,20 @@ package unwrittenfun.minecraft.wallteleporters.client.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-import unwrittenfun.minecraft.commonfun.client.gui.GuiFunContainer;
-import unwrittenfun.minecraft.commonfun.helpers.TooltipHelper;
-import unwrittenfun.minecraft.commonfun.network.messages.MessageTileInteger;
 import unwrittenfun.minecraft.wallteleporters.Config;
 import unwrittenfun.minecraft.wallteleporters.ModInfo;
 import unwrittenfun.minecraft.wallteleporters.WallTeleporters;
 import unwrittenfun.minecraft.wallteleporters.client.gui.component.GuiButtonArrow;
 import unwrittenfun.minecraft.wallteleporters.client.gui.component.GuiToggleButton;
 import unwrittenfun.minecraft.wallteleporters.containers.ContainerWallTeleporter;
+import unwrittenfun.minecraft.wallteleporters.helpers.TooltipHelper;
 import unwrittenfun.minecraft.wallteleporters.multiblock.WallTeleporterNetwork;
+import unwrittenfun.minecraft.wallteleporters.network.messages.MessageTileInteger;
 import unwrittenfun.minecraft.wallteleporters.recipes.TeleporterFuelRegistry;
 import unwrittenfun.minecraft.wallteleporters.tiles.TileWallTeleporterBase;
 
@@ -27,7 +25,6 @@ import java.util.List;
 
 public class GuiWallTeleporter extends GuiFunContainer {
   public static ResourceLocation texture = new ResourceLocation(ModInfo.RESOURCE_LOCATION, "textures/gui/wallTeleporter.png");
-  public TileWallTeleporterBase teleporter;
   private static List<String> maskTooltip = new ArrayList<>();
   private static List<String> rotationTooltip = new ArrayList<>();
 
@@ -39,10 +36,14 @@ public class GuiWallTeleporter extends GuiFunContainer {
     rotationTooltip.add("should respect rotation");
   }
 
-  public GuiWallTeleporter(InventoryPlayer playerInventory, TileWallTeleporterBase teleporterBase) {
-    super(new ContainerWallTeleporter(playerInventory, teleporterBase));
+  private final ContainerWallTeleporter container;
+  public TileWallTeleporterBase teleporter;
 
-    teleporter = teleporterBase;
+  public GuiWallTeleporter(ContainerWallTeleporter container) {
+    super(container);
+
+    this.container = container;
+    this.teleporter = container.teleporter;
     xSize = 176;
     ySize = 172;
   }

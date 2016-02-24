@@ -3,6 +3,7 @@ package unwrittenfun.minecraft.wallteleporters;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -19,7 +20,7 @@ import unwrittenfun.minecraft.wallteleporters.items.ItemRegister;
 import unwrittenfun.minecraft.wallteleporters.network.NetworkRegister;
 import unwrittenfun.minecraft.wallteleporters.recipes.TeleporterFuelRegistry;
 
-@Mod(modid = ModInfo.MOD_ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:Forge;required-after:commonfun", guiFactory = ModInfo.GUI_FACTORY_CLASS)
+@Mod(modid = ModInfo.MOD_ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:Forge", guiFactory = ModInfo.GUI_FACTORY_CLASS)
 public class WallTeleporters {
   @Mod.Instance
   public static WallTeleporters instance;
@@ -34,6 +35,9 @@ public class WallTeleporters {
   };
 
   public static Logger log;
+
+  @SidedProxy(clientSide = "unwrittenfun.minecraft.wallteleporters.client.ClientProxy", serverSide = "unwrittenfun.minecraft.wallteleporters.CommonProxy")
+  public static CommonProxy proxy;
 
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {

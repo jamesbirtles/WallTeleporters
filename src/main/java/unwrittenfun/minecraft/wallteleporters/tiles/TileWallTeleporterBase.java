@@ -12,19 +12,20 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
-import unwrittenfun.minecraft.commonfun.helpers.InventoryHelpers;
-import unwrittenfun.minecraft.commonfun.network.messages.MessageTileRequest;
-import unwrittenfun.minecraft.commonfun.network.receivers.ITileIntegerReceiver;
 import unwrittenfun.minecraft.wallteleporters.WallTeleporters;
 import unwrittenfun.minecraft.wallteleporters.blocks.BlockRegister;
 import unwrittenfun.minecraft.wallteleporters.helpers.CompareStacks;
+import unwrittenfun.minecraft.wallteleporters.helpers.InventoryHelpers;
 import unwrittenfun.minecraft.wallteleporters.multiblock.WallTeleporterNetwork;
+import unwrittenfun.minecraft.wallteleporters.network.messages.MessageTileRequest;
+import unwrittenfun.minecraft.wallteleporters.network.receivers.ITileIntegerReceiver;
+import unwrittenfun.minecraft.wallteleporters.network.receivers.ITileRequestReceiver;
 import unwrittenfun.minecraft.wallteleporters.recipes.TeleporterFuelRegistry;
 
 /**
  * Author: James Birtles
  */
-public class TileWallTeleporterBase extends TileWallTeleporter implements IInventory, ISidedInventory, ITileIntegerReceiver {
+public class TileWallTeleporterBase extends TileWallTeleporter implements IInventory, ISidedInventory, ITileIntegerReceiver, ITileRequestReceiver {
 
   public ItemStack[] items = new ItemStack[2];
 
@@ -95,8 +96,6 @@ public class TileWallTeleporterBase extends TileWallTeleporter implements IInven
       case 2: // Fuel
         getWTNetwork().requestFuel(player);
         break;
-      default:
-        super.receiveRequestMessage(id, player);
     }
   }
 

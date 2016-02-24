@@ -38,9 +38,7 @@ public class TeleportationHelper {
             Field field = EntityMinecartContainer.class.getDeclaredField("dropContentsWhenDead");
             field.setAccessible(true);
             field.set(entity, false);
-          } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-          } catch (IllegalAccessException e) {
+          } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
           }
         }

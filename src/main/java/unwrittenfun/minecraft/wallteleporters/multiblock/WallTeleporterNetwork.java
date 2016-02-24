@@ -4,20 +4,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import unwrittenfun.minecraft.commonfun.network.messages.MessageTileInteger;
 import unwrittenfun.minecraft.wallteleporters.Config;
 import unwrittenfun.minecraft.wallteleporters.WallTeleporters;
 import unwrittenfun.minecraft.wallteleporters.helpers.CompareStacks;
 import unwrittenfun.minecraft.wallteleporters.helpers.TeleportationHelper;
 import unwrittenfun.minecraft.wallteleporters.network.messages.MessageTileDestination;
+import unwrittenfun.minecraft.wallteleporters.network.messages.MessageTileInteger;
 import unwrittenfun.minecraft.wallteleporters.tiles.TileWallTeleporter;
 import unwrittenfun.minecraft.wallteleporters.tiles.TileWallTeleporterBase;
 
 import java.util.ArrayList;
 
-/**
- * Author: James Birtles
- */
 public class WallTeleporterNetwork {
   public static final int MAX_TRIPS = 18;
 

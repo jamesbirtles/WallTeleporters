@@ -5,7 +5,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import unwrittenfun.minecraft.commonfun.CommonFun;
+import unwrittenfun.minecraft.wallteleporters.WallTeleporters;
 import unwrittenfun.minecraft.wallteleporters.multiblock.WallTeleporterNetwork;
 import unwrittenfun.minecraft.wallteleporters.network.messages.MessageTileDestination;
 import unwrittenfun.minecraft.wallteleporters.tiles.TileWallTeleporterBase;
@@ -13,7 +13,7 @@ import unwrittenfun.minecraft.wallteleporters.tiles.TileWallTeleporterBase;
 public class HandlerTileDestination implements IMessageHandler<MessageTileDestination, IMessage> {
   @Override
   public IMessage onMessage(MessageTileDestination message, MessageContext ctx) {
-    World world = CommonFun.proxy.getWorldForId(message.worldId, ctx.side);
+    World world = WallTeleporters.proxy.getWorldForId(message.worldId, ctx.side);
     if (world != null) {
       TileEntity tileEntity = world.getTileEntity(message.x, message.y, message.z);
       if (tileEntity instanceof TileWallTeleporterBase) {

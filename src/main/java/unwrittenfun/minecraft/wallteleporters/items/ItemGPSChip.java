@@ -8,7 +8,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import unwrittenfun.minecraft.commonfun.items.ItemFun;
 import unwrittenfun.minecraft.wallteleporters.ModInfo;
 import unwrittenfun.minecraft.wallteleporters.WallTeleporters;
 

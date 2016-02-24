@@ -2,7 +2,6 @@ package unwrittenfun.minecraft.wallteleporters.items;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import unwrittenfun.minecraft.commonfun.items.ItemFun;
 import unwrittenfun.minecraft.wallteleporters.ModInfo;
 import unwrittenfun.minecraft.wallteleporters.WallTeleporters;
 

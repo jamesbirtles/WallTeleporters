@@ -3,7 +3,6 @@ package unwrittenfun.minecraft.wallteleporters.network.messages;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.world.World;
-import unwrittenfun.minecraft.commonfun.network.messages.MessageTileCoords;
 
 public class MessageTileDestination extends MessageTileCoords {
   public String destinationName;

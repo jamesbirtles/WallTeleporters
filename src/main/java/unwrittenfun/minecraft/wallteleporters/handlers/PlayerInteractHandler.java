@@ -5,9 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import unwrittenfun.minecraft.commonfun.helpers.InventoryHelpers;
-import unwrittenfun.minecraft.commonfun.helpers.ItemHelpers;
 import unwrittenfun.minecraft.wallteleporters.helpers.CompareStacks;
+import unwrittenfun.minecraft.wallteleporters.helpers.InventoryHelpers;
 import unwrittenfun.minecraft.wallteleporters.items.ItemRegister;
 
 public class PlayerInteractHandler {
@@ -21,7 +20,7 @@ public class PlayerInteractHandler {
         if (leftover > 0) {
           ItemStack drop = result.copy();
           drop.stackSize = leftover;
-          ItemHelpers.dropItemStack(drop, event.world, event.x, event.y + 1, event.z);
+          InventoryHelpers.dropItemStack(drop, event.world, event.x, event.y + 1, event.z);
         }
         event.entityPlayer.inventory.decrStackSize(event.entityPlayer.inventory.currentItem, 1);
         event.world.playSoundAtEntity(event.entity, "random.explode", 1, 1);
