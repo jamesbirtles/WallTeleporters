@@ -66,7 +66,7 @@ public class WallTeleporterNetwork {
   }
 
   public void entityCollided(Entity entity) {
-    if (hasDestination() && (Config.disableFuel || fuel > 0) && cooldown == 0) {
+    if (hasDestination() && (Config.disableFuel || fuel > 0) && cooldown == 0 && (!Config.disableDimHop || entity.worldObj.provider.dimensionId == destinationWorldId)) {
       entity.worldObj.playSoundAtEntity(entity, "wallteleporters:woosh", 1, 1.5f);
       if (entity instanceof EntityPlayerMP) {
         TeleportationHelper.teleportPlayerTo((EntityPlayerMP) entity, destinationWorldId, destinationData[0], destinationData[1], destinationData[2], useRotation ? destinationData[3] : entity.rotationYaw, entity.rotationPitch);
