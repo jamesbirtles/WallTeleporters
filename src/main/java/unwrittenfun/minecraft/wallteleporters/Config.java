@@ -8,6 +8,7 @@ import java.io.File;
 
 public class Config {
   public static boolean disableFuel = false;
+  public static boolean disableDimHop = false;
   public static Configuration configuration;
 
   public static void init(File file) {
@@ -17,6 +18,7 @@ public class Config {
 
   public static void readConfig() {
     disableFuel = configuration.getBoolean("disableFuel", Configuration.CATEGORY_GENERAL, false, "Set to true if you would like to disable the need for fuel on the teleporters");
+    disableDimHop = configuration.getBoolean("disableDimHop", Configuration.CATEGORY_GENERAL, false, "Disables interdimensional travel");
 
     if (configuration.hasChanged()) {
       configuration.save();
